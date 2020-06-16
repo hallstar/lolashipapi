@@ -20,6 +20,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return ApiResponse::withSuccess('LolaShip Reit  Version 1.0');
+        return ApiResponse::withSuccess('LolaShip API  Version 1.0');
     }
 }
