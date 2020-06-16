@@ -52,9 +52,9 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function getIdentificationLinkAttribute($value)
+    public function tenants()
     {
-        return ($value==null ? null : generatePresignedUrl($value));
+        return $this->belongsToMany(Tenant::class, "tenant_users");
     }
 }
    
