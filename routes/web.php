@@ -11,13 +11,16 @@
 |
 */
 
-Route::get("404", function(){
-    return view("notfound");
-})->name("404");
-
 Route::group(['middleware'=>'tenant'], function(){
+
+
+        Route::get("404", function(){
+            return view("notfound");
+        });
+
         Route::get('/', function(){
             return "hello";
         });
+
 
 });

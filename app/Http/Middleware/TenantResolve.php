@@ -37,11 +37,7 @@ class TenantResolve
             if($tenant!=null)
             {
                 $request->merge(['tenant_id'=>$tenant->id]);
-                return $next($request);
-            }
-            else
-            {
-                return redirect()->route("404");
+                $resolved = true;
             }
         }
 
@@ -55,13 +51,16 @@ class TenantResolve
             if($tenant!=null)
             {
                 $request->merge(['tenant_id'=>$tenant->id]);
-                return $next($request);
-            }
-            else
-            {
-                return redirect()->route("404");
+                $resolved = true;
             }
         }
 
+        if($resolved)
+            return $next($request);
+        return redirect()->away(env("APP_URL").'/404');
+
     }
+
+
+
 }
