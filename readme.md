@@ -1,4 +1,4 @@
-# KPReit Platform Admin and API project
+LolaShip  platform 
 
 
 ## How to use
