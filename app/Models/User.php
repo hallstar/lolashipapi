@@ -19,24 +19,8 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'last_name', 
         'first_name', 
-        'orba_user_id', 
         'email', 
-        'password',
-        'gender',
-        'title',
-        'phone_number',
-        'home_phone_number',
-        'work_phone_number',
-        'identification_link',
-        'occupation',
-        'address_line1',
-        'address_line2',
-        'city',
-        'state',
-        'postal_code',
-        'country',
-        'nationality',
-        'trn'             
+        'password',           
     ];
 
     /**
@@ -72,19 +56,5 @@ class User extends Authenticatable implements JWTSubject
     {
         return ($value==null ? null : generatePresignedUrl($value));
     }
-
-    public function brokers()
-    {
-        return $this->hasMany(UserBroker::class)->with(['broker']);
-    }
-
-    public function business_profile()
-    {
-        return $this->hasOne(UserBusinessProfile::class);
-    }
-
-    public function profile()
-    {
-        return $this->hasOne(UserProfile::class);
-    }
 }
+   

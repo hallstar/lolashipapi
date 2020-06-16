@@ -13,34 +13,6 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $titles = [
-            // Offer
-            "offer_access",
-            "offer_create",
-            "offer_show",
-            "offer_edit",
-            "offer_delete",
-
-            // Bank
-            "bank_access",
-            "bank_create",
-            "bank_show",
-            "bank_edit",
-            "bank_delete",
-
-            // Broker
-            "broker_access",
-            "broker_create",
-            "broker_show",
-            "broker_edit",
-            "broker_delete",
-
-            // Currency
-            "currency_access",
-            "currency_create",
-            "currency_show",
-            "currency_edit",
-            "currency_delete",
-
             // Permissions
             "permission_create",
             "permission_edit",
