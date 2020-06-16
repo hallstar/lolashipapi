@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::namespace ('\App\Http\Controllers\Api\V1')->prefix('v1')->group(function () {
+Route::namespace('\App\Http\Controllers\Api\V1')->prefix('v1')->domain(env('MAIN_HOST'))->group(function () {
 
     Route::get('/', 'HomeController@index');
 

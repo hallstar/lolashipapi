@@ -19,6 +19,8 @@ class CreateTenantsTable extends Migration
             $table->string('subdomain')->unique();
             $table->string('domain')->nullable()->index();
             $table->longText('config')->nullable(); //store json encoded config here
+            $table->string('name');
+            $table->boolean('is_active')->default(true);
         });
     }
 

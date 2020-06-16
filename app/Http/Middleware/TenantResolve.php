@@ -17,46 +17,27 @@ class TenantResolve
     public function handle($request, Closure $next)
     {
         $resolved = false;
-    
-        $domain = $request->getHost();
-        if($domain==env('MAIN_HOST')) // if incoming host name is main host, do nothing
-            return $next($request);
-
         //try to resolve otherwise
 
+        $domain = $request->getHost();
         $domain = str_replace("www.", '', $domain); //get rid of www.
-
-        $parts = explode(".", $domain); // need the parts
-
-        $parts_count = count($parts);
-
-        if($parts_count==2)
+        $domain = str_replace(".".env("MAIN_HOST"), '', $domain);
+        
+        //subdomain
+        $tenant = Tenant::where('subdomain', $domain)->orWhere('domain', $domain)->first(); 
+        if($tenant!=null)
         {
-            
-            $tenant = Tenant::where('domain', $domain)->first(); 
-            if($tenant!=null)
-            {
-                $request->merge(['tenant_id'=>$tenant->id]);
-                $resolved = true;
-            }
-        }
-
-        if($parts_count==3)
-        {
-            //top level domain. We got to improve this to check for co.uk, .com.au etc
-            //need a way to handle a domain here lets say if its a toplevel co.uk domain
-
-            //subdomain
-            $tenant = Tenant::where('subdomain', $parts[0])->first(); 
-            if($tenant!=null)
-            {
-                $request->merge(['tenant_id'=>$tenant->id]);
-                $resolved = true;
-            }
+            $request->merge(['tenant_id'=>$tenant->id]);
+            $resolved = true;
         }
 
         if($resolved)
+        {
+            //set cookie domain and accept next request
+            \Config::set("session.domain", $domain);
             return $next($request);
+        }
+        //redirect away to 404
         return redirect()->away(env("APP_URL").'/404');
 
     }

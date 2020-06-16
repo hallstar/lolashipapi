@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Client web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -11,19 +11,10 @@
 |
 */
 
-Route::group([
-    'middleware' => 'tenant',
-    'domain' => '{domain}.'. config('app.main_host'),
-    ], function(){
-
-        require base_path('routes/client.php');
+Route::get("404", function(){
+    return view("notfound");
 });
 
-
-//main domain
-Route::domain(env('MAIN_HOST'))->group(function () {
-
-    require base_path('routes/front.php');
-
+Route::get("/", function(){
+    return "Front facing app here";
 });
-
