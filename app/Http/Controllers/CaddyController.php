@@ -10,7 +10,7 @@ class CaddyController extends Controller
     //
     public function index(Request $request)
     {
-        $domain = $request->get("domain");
+        $domain = str_replace(".", "_", $request->get("domain"));
 
         $tenant = Tenant::where('domain', $domain)->where('is_active', true)->count();
         if($tenant>0)
