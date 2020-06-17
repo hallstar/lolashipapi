@@ -12,7 +12,7 @@
 */
 
 Route::get("404", function(){
-    return view("notfound");
+    abort(404);
 });
 
 Route::get("/", function(){
