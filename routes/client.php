@@ -11,12 +11,13 @@
 |
 */
 
-Route::get("/", function(){
 
-    return "Client app here";
-});
+
+Route::get("/", 'ClientController@index');
 
 Route::get("/register", function(){
 
     return "Customer register on client side";
 });
+
+
