@@ -22,9 +22,19 @@ class TenantResolve
         $domain = $request->getHost();
         $domain = str_replace("www.", '', $domain); //get rid of www.
         $domain = str_replace(".".env("MAIN_HOST"), '', $domain);
+
+      
+
+        if($domain=='site')
+        {
+            $tenant = Tenant::where('domain', 'rushio.test')->first(); 
+        }
+        else
+        {
+            $tenant = Tenant::where('subdomain', $domain)->orWhere('domain', $domain)->first(); 
+        }
         
         //subdomain
-        $tenant = Tenant::where('subdomain', $domain)->orWhere('domain', $domain)->first(); 
         if($tenant!=null)
         {
             $request->merge(['tenant_id'=>$tenant->id]);
