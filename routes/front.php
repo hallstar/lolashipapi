@@ -18,3 +18,6 @@ Route::get("404", function(){
 Route::get("/", function(){
     return "Front facing app here";
 });
+
+
+Route::get("caddy/allowed-domain", 'CaddyController@index');
