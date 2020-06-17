@@ -22,7 +22,6 @@ class TenantResolve
         $domain = $request->getHost();
         $domain = str_replace("www.", '', $domain); //get rid of www.
         $domain = str_replace(".".env("MAIN_HOST"), '', $domain);
-        
         //subdomain
         $tenant = Tenant::where('subdomain', $domain)->orWhere('domain', $domain)->first(); 
         if($tenant!=null)
