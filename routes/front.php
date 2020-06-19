@@ -14,10 +14,13 @@
 Route::get("404", function(){
     abort(404);
 });
+Route::get("caddy/allowed-domain", 'CaddyController@index');
 
-Route::get("/", function(){
-    return "Front facing app here";
+    Route::group(['layout'=>'layouts.front'], function(){
+
+        Route::livewire('/', 'user.index')->name("index");
+        Route::livewire('/signup', 'user.signup')->name("signup");
+
 });
 
 
-Route::get("caddy/allowed-domain", 'CaddyController@index');
