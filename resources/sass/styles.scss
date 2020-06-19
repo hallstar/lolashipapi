@@ -1,0 +1,103 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* Body fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;0,800;1,200;1,400&display=swap');
+
+/*Heading fonts*/
+body {
+    font-family: -apple-system, Helvetica,Avenir,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,Helvetica,sans-serif !important;
+    font-family: 'Nunito' sans-serif;
+}
+section {
+    padding: 6rem 0;
+}
+
+.highlight {
+    color: inherit;
+    background-color: transparent;
+    background-image: linear-gradient(120deg,rgba(255,193,7,.4) 0,rgba(255,193,7,.4) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% .3em;
+    background-position: 0 80%;
+}
+
+.btn {
+    min-width: 100px;
+    transition: background 200ms ease-in;
+    @apply text-center font-bold;
+    @apply bg-blue-500 rounded px-6 py-2 whitespace-no-wrap;   
+}
+
+.btn-large {
+    @apply px-8 py-4;
+}
+.btn-primary {
+    background-color:rgb(0, 98, 255);
+    border-color: #0062ff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #365ebd;
+}
+
+.btn-primary:active {
+    background-color: #365ebd;
+}
+
+.btn-primary-border {
+    border: 1px solid #90aef5; 
+    color:#0062ff;
+    @apply rounded bg-transparent;
+}
+
+.input{
+    transition: border-color 200ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    color: #5D6068;
+    border: 1px solid #DEDEDE;
+    @apply font-sans px-4;
+    @apply py-2 mt-2 mb-1 rounded;
+}
+
+
+.input ~ div.domain-box > span{
+    color: #5D6068;border: 1px solid #DEDEDE;padding-top:0.75rem;padding-bottom:0.7rem; padding-right: 0.75rem; border-top-right-radius: 5px; border-bottom-right-radius: 5px; background-color:#f1f1f1; margin-left:-2px;
+    @apply text-gray-800;
+}
+
+.input:focus ~ div.domain-box > span{
+    border: 1px solid #4B7BEC;
+    @apply text-gray-800;
+}
+
+.input-error ~ div.domain-box > span {
+    border-right: 1px solid #FC5C65;
+    border-top: 1px solid #FC5C65;
+    border-bottom: 1px solid #FC5C65;
+}
+
+.input-error:focus ~ div.domain-box > span {
+    border-right: 1px solid #FC5C65;
+    border-top: 1px solid #FC5C65;
+    border-bottom: 1px solid #FC5C65;
+}
+
+.input:focus{
+    outline: none;
+    border: 1px solid #4B7BEC;
+    @apply text-gray-800;
+}
+
+.input-error, .input-error:focus {
+    border: 1px solid #FC5C65;
+    color: #FC5C65;
+}
+
+.form-error {
+    color:#FC5C65; 
+    @apply font-sans font-medium text-xs;
+}
