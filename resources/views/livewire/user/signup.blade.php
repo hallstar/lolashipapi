@@ -1,8 +1,11 @@
 <div>
     <section class="min-h-screen">
         <div class="container mx-auto bg-white shadow rounded p-4">
+            @if($registered)
+                <p>You have registered successfully. Please check your email to confirm registration</p>
+            @else
             <p class="font-bold text-gray-800 text-center">Register</p>
-            
+            @error('failed')<div class="form-error">{{$message}}</div>@enderror
             <div class="flex">
                 <div class="flex flex-col w-1/2 mr-3">
                     <div class="flex flex-col my-3">
@@ -65,7 +68,7 @@
             <div class="flex my-2 justify-center">
                 <button class="btn btn-primary btn-large" wire:click="submit" wire:loading.attr="disabled" wire:loading.class="btn-grey">Get Started</button>
             </div>
-        
+        @endif
         </div>
     </section>
 </div>

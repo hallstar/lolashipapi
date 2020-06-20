@@ -4,6 +4,9 @@ namespace App\Http\Livewire\User;
 
 use Livewire\Component;
 use Illuminate\Validation\Rule;
+use App\Models\Tenant;
+use DB;
+use Log;
 
 class Signup extends Component
 {
@@ -17,6 +20,7 @@ class Signup extends Component
     public $privacy;
     public $terms;
     public $refund;
+    public $registered = false;
 
     public function mount()
     {
@@ -55,6 +59,31 @@ class Signup extends Component
             'terms'   => 'accepted',
             'refund'   => 'accepted',
         ]);
+
+        DB::beginTransaction();
+        try
+        {
+            
+            Tenant::createWithUser([
+                'subdomain' => $this->subdomain,
+                'company'   => $this->company,
+                'firstname' => $this->firstname,
+                'lastname'  => $this->lastname,
+                'email'     => $this->email,
+                'password'  => $this->password,
+            ]);
+            DB::commit();
+            $this->registered = true;
+        }
+        catch(\Exception $e)
+        {
+            DB::rollback();
+            $this->registered = false;
+            Log::info("registration exception". $e->getMessage());
+            $errors = $this->getErrorBag();
+            $errors->add('failed', 'We could not create an account for you at this time.');
+        }
+
 
     }
 
