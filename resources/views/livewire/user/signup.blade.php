@@ -1,41 +1,47 @@
 <div>
     <section class="min-h-screen">
         <div class="container mx-auto bg-white shadow rounded p-4">
+        <form wire:submit.prevent="submit">
             <p class="font-bold text-gray-800 text-center">Register</p>
+            
             <div class="flex">
                 <div class="flex flex-col w-1/2 mr-3">
                     <div class="flex flex-col my-3">
                         <label for="companyName" class="text-sm font-bold text-gray-600">Company Name</label>
-                        <input class="input" type="text" placeholder="Example Inc." name="companyName">
+                        <input class="input @error('company') input-error @enderror" type="text" placeholder="Example Inc." wire:model.lazy="company">
+                        @error('company')<div class="form-error">{{$message}}</div>@enderror
                     </div>
                     <div class="flex flex-col my-3">
-                        <label for="firstName" class="text-sm font-bold text-gray-600">First Name</label>
-                        <input class="input" type="text" placeholder="John" name="firstName">
+                        <label for="firstName"  class="text-sm font-bold text-gray-600">First Name</label>
+                        <input class="input @error('firstname') input-error @enderror" type="text" placeholder="John" wire:model.lazy="firstname">
+                        @error('firstname')<div class="form-error">{{$message}}</div>@enderror
                     </div>
                     <div class="flex flex-col my-3">
                         <label for="email" class="text-sm font-bold text-gray-600">Email</label>
-                        <input class="input input-error" type="text" placeholder="example@gmail.com" name="email">
-                        <div class="form-error">Please enter this field</div>
+                        <input class="input @error('email') input-error @enderror" type="text" placeholder="example@gmail.com" wire:model.lazy="email">
+                        @error('email')<div class="form-error">{{$message}}</div>@enderror
                     </div>
                 </div>
                 <div class="flex flex-col w-1/2 mr-3">
                     <div class="flex flex-col my-3">
-                        <label for="domain" class="text-sm font-bold text-gray-600">Domain</label>
+                        <label for="domain" class="text-sm font-bold text-gray-600">Wesbite</label>
                         <div class="flex w-full justify-center items-center">
-                            <input class="input input-error w-9/12" type="text" placeholder="mywebsite" style="text-align: end; padding-right: 2px;" name="domain">
+                            <input class="input @error('sitename') input-error @enderror w-9/12" wire:model.lazy="sitename" type="text" style="text-align: end; padding-right: 2px;" placeholder="sitename">
                             <div class="domain-box" style="margin-top: 5px;">
                                 <span class="w-4/12">.lolaship.com</span>
                             </div>
                         </div>
-                        <div class="form-error">Please enter this field</div>
+                        @error('sitename')<div class="form-error">{{$message}}</div>@enderror
                     </div>
                     <div class="flex flex-col my-3">
                         <label for="firstName" class="text-sm font-bold text-gray-600">Last Name</label>
-                        <input class="input" type="text" placeholder="Brown" name="firstName">
+                        <input class="input @error('lastname') input-error @enderror" type="text" placeholder="Brown" wire:model.lazy="lastname">
+                        @error('lastname')<div class="form-error">{{$message}}</div>@enderror
                     </div>
                     <div class="flex flex-col my-3">
                         <label for="password" class="text-sm font-bold text-gray-600">Password</label>
-                        <input class="input" type="password" name="email">
+                        <input class="input @error('password') input-error @enderror" type="password" wire:model.lazy="password">
+                        @error('password')<div class="form-error">{{$message}}</div>@enderror
                     </div>
                 </div>
             </div>
@@ -55,8 +61,10 @@
                 </div>
             </div>
             <div class="flex my-2 justify-center">
-                <button class="btn btn-primary btn-large">Get Started</button>
+                <button class="btn btn-primary btn-large" wire:loading.attr="disabled" wire:loading.class="btn-grey">Get Started</button>
             </div>
+           
+        </form>
         </div>
     </section>
 </div>
