@@ -35,7 +35,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        Route::pattern('domain', '[a-z0-9.-_]+');
+        Route::pattern('domain', '[a-z0-9.-]+');
 
         $this->mapApiRoutes();
 

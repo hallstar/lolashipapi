@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User;
 
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 
 class Signup extends Component
 {
@@ -12,7 +13,7 @@ class Signup extends Component
     public $email;
     public $password;
     public $company;
-    public $sitename;
+    public $subdomain;
 
     public function mount()
     {
@@ -21,18 +22,28 @@ class Signup extends Component
         $this->email = old('email');
         $this->password = old('password');
         $this->company = old('company');
-        $this->sitename = old('sitename');
+        $this->subdomain = old('subdomain');
     }
+
+    public function updated($field)
+    {
+        $this->validateOnly($field, [
+            'subdomain' => 'min:5|max:30|unique:tenants|regex:/^[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]$/i',
+        ]);
+    }
+
 
     public function submit()
     {
         $this->validate([
             'firstname' => 'required|string',
             'lastname' => 'required|string',
-            'email' => 'required|email',
+            'email' => ['required', 'string', 'email', 'max:191',Rule::unique('users')->where(function ($query) {
+                return $query->where('is_customer', false);
+            })],
             'company' => 'required|string',
             'password' => 'required|string',
-            'sitename' => 'required|string',
+            'subdomain' => 'min:5|max:30|unique:tenants|regex:/^[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]$/i',
         ]);
 
     }

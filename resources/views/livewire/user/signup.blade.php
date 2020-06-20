@@ -26,12 +26,12 @@
                     <div class="flex flex-col my-3">
                         <label for="domain" class="text-sm font-bold text-gray-600">Wesbite</label>
                         <div class="flex w-full justify-center items-center">
-                            <input class="input @error('sitename') input-error @enderror w-9/12" wire:model.lazy="sitename" type="text" style="text-align: end; padding-right: 2px;" placeholder="sitename">
+                            <input class="input @error('subdomain') input-error @enderror w-9/12" wire:model="subdomain" type="text" style="text-align: end; padding-right: 2px;" placeholder="sitename">
                             <div class="domain-box" style="margin-top: 5px;">
                                 <span class="w-4/12">.lolaship.com</span>
                             </div>
                         </div>
-                        @error('sitename')<div class="form-error">{{$message}}</div>@enderror
+                        @error('subdomain')<div class="form-error">{{$message}}</div>@enderror
                     </div>
                     <div class="flex flex-col my-3">
                         <label for="firstName" class="text-sm font-bold text-gray-600">Last Name</label>

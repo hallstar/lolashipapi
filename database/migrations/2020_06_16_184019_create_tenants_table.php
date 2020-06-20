@@ -21,6 +21,8 @@ class CreateTenantsTable extends Migration
             $table->longText('config')->nullable(); //store json encoded config here
             $table->string('name');
             $table->boolean('is_active')->default(true);
+            $table->string('hash')->nullable();
+            $table->smallInteger('onboard_step')->default(0);
         });
     }
 
