@@ -1,7 +1,6 @@
 <div>
     <section class="min-h-screen">
         <div class="container mx-auto bg-white shadow rounded p-4">
-        <form wire:submit.prevent="submit">
             <p class="font-bold text-gray-800 text-center">Register</p>
             
             <div class="flex">
@@ -18,7 +17,7 @@
                     </div>
                     <div class="flex flex-col my-3">
                         <label for="email" class="text-sm font-bold text-gray-600">Email</label>
-                        <input class="input @error('email') input-error @enderror" type="text" placeholder="example@gmail.com" wire:model.lazy="email">
+                        <input class="input @error('email') input-error @enderror" type="text" placeholder="example@gmail.com" wire:model="email">
                         @error('email')<div class="form-error">{{$message}}</div>@enderror
                     </div>
                 </div>
@@ -48,23 +47,25 @@
             <div class="flex flex-col mt-3">
                 <p class="text-sm text-gray-700 font-bold">Please agree to the following</p>
                 <div class="flex items-center my-1">
-                    <input class="input mr-3" type="checkbox" placeholder="Example Inc." name="companyName">
+                    <input class="input mr-3" type="checkbox" placeholder="Example Inc." wire:model="privacy">
                     <label for="companyName" class="text-sm mt-1 font-thin text-gray-600">Privacy Policy</label>
+                    @error('privacy')<div class="form-error">{{$message}}</div>@enderror
                 </div>
                 <div class="flex items-center my-1">
-                    <input class="input mr-3" type="checkbox" placeholder="Example Inc." name="companyName">
+                    <input class="input mr-3" type="checkbox" placeholder="Example Inc." wire:model="terms">
                     <label for="companyName" class="text-sm mt-1  font-thin text-gray-600">Terms of Service</label>
+                    @error('terms')<div class="form-error">{{$message}}</div>@enderror
                 </div>
                 <div class="flex items-center my-1">
-                    <input class="input mr-3" type="checkbox" placeholder="Example Inc." name="companyName">
+                    <input class="input mr-3" type="checkbox" placeholder="Example Inc." wire:model="refund">
                     <label for="companyName" class="text-sm mt-1 font-thin text-gray-600">Refund Policy</label>
+                    @error('refund')<div class="form-error">{{$message}}</div>@enderror
                 </div>
             </div>
             <div class="flex my-2 justify-center">
-                <button class="btn btn-primary btn-large" wire:loading.attr="disabled" wire:loading.class="btn-grey">Get Started</button>
+                <button class="btn btn-primary btn-large" wire:click="submit" wire:loading.attr="disabled" wire:loading.class="btn-grey">Get Started</button>
             </div>
-           
-        </form>
+        
         </div>
     </section>
 </div>
