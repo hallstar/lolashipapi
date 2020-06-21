@@ -33,9 +33,8 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
      */
     protected function gate()
     {
-            if (! app()->runningInConsole()) {
-                return env("HORIZON");
-            }
-            return false;
+        Gate::define('viewHorizon', function ($user = null) {
+            return env("HORIZON");
+        });
     }
 }
