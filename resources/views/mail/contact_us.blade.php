@@ -177,7 +177,7 @@
           <!-- Logo -->
           <tr>
             <td class="email-masthead">
-              <a class="email-masthead_name"><img src="{{ asset('/img/logo_01.png') }}" alt="Logo" width="200" title="logo"/></a>
+              <a class="email-masthead_name"><img src="{{env('APP_URL'}}/assets/images/logo.svg" alt="Logo" width="200" title="logo"/></a>
             </td>
           </tr>
           <!-- Email Body -->

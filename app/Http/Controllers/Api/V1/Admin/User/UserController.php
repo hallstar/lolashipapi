@@ -21,7 +21,7 @@ class UserController extends Controller
         $query = $user->newQuery();
 
         if($request->input('all', false)) {
-            $users = $query->orderBy('first_name', 'ASC')->get();
+            $users = $query->orderBy('firstname', 'ASC')->get();
         } else {
             $users = $query->with(['roles' => function($item) {
                 return $item->without('permissions');
@@ -54,8 +54,8 @@ class UserController extends Controller
 
             $adminUser = AdminUser::create([
                 'email' => $request->input('email'),
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
+                'firstname' => $request->input('first_name'),
+                'lastname' => $request->input('last_name'),
                 'password' => Hash::make($request->input('password'))
             ]);
 

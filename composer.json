@@ -15,9 +15,11 @@
         "guzzlehttp/guzzle": "^6.5",
         "intervention/image": "^2.5",
         "laravel/framework": "^7.0",
+        "laravel/horizon": "^4.3",
         "laravel/tinker": "^2.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^1.2",
+        "predis/predis": "^1.1",
         "tymon/jwt-auth": "1.0.*"
     },
     "require-dev": {

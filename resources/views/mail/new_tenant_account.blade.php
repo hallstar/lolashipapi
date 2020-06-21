@@ -187,10 +187,14 @@
                                     <!-- Body content -->
                                     <tr>
                                         <td class="content-cell">
-                                            <h1>Hello {{ucfirst($account->first_name)}} {{ucfirst($account->last_name)}},</h1>
+                                            <h1>Hello {{ucfirst($user->firstname)}} {{ucfirst($user->lastname)}},</h1>
 
                                             <p>
-                                                We have recently received a password reset request. Please click the link below to continue. If you did not request a change, please change your password and ignore this email.
+                                                Welcome to {{ env('APP_NAME') }}.  Your account has been setup. Please click the link below to finish setting up your account.
+                                                <br/>
+                                                <b>Your website address:</b> https://{{$tenant->subdomain}}.{{env("MAIN_HOST")}}<br/>
+                                                Your website address is very important. All your customers will use it.
+                                
                                             </p>
 
                                             <!-- Action -->
@@ -198,12 +202,12 @@
                                                 <tr>
                                                     <td align="center">
                                                         <div>
-                                                            <a href="{{env('SPA_URL')}}/#/reset/{{$reset->token}}" class="button button--green">Reset my password</a>
+                                                            <a href="https://{{$tenant->subdomain}}.{{env('MAIN_HOST')}}/onboard?token={{$tenant->hash}}" class="button button--green">Click to Activate your account</a>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <p>For your reference, your email is <strong>{{$account->email}}</strong> for logging in.</p>
+                                            <p>For your reference, your email is <strong>{{$user->email}}</strong> for logging in.</p>
 
                                             <p><strong>P.S.</strong> Need help getting started? Email us at {{ env('CONTACT_EMAIL') }}.</p>
                                             <!-- Sub copy -->
@@ -212,7 +216,7 @@
                                                     <td>
                                                         <p class="sub">If you’re having trouble clicking the confirm account button, copy and paste the URL below into your web browser.</p>
 
-                                                        <p class="sub"><a href="{{env('SPA_URL')}}/#/reset/{{$reset->token}}">{{env("SPA_URL")}}/#/reset/{{$reset->token}}</a></p>
+                                                        <p class="sub"><a href="https://{{$tenant->subdomain}}.{{env('APP_URL')}}/onboard?token={{$tenant->hash}}">https://{{$tenant->subdomain}}.{{env('MAIN_HOST')}}/onboard?token={{$tenant->hash}}</a></p>
                                                     </td>
                                                 </tr>
                                             </table>

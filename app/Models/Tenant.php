@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use Mail;
+use App\Mail\SendNewTenantAccount;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -27,10 +29,10 @@ class Tenant extends Model
             'default_email' => $data['email'],
         ]);
 
-        $tenant->hash = md5($tenant->id.$tenant->subdomain).time();
+        $tenant->hash = md5($tenant->id.$tenant->subdomain).generateRandomString().time();
         $tenant->save();
 
-        $tenant->users()->create([
+        $user = $tenant->users()->create([
             'firstname' =>$data['firstname'],
             'lastname' => $data['lastname'],
             'email'    => $data['email'],
@@ -41,6 +43,8 @@ class Tenant extends Model
         ]);
         //assign a role to this user
         //dispatch email
+        Mail::to($user->email)->queue(new SendNewTenantAccount($tenant, $user));
+
     }
 
 }
