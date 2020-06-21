@@ -12,7 +12,7 @@
 */
 
 
-
+//add is active middleware to native routes
 Route::get("/", 'ClientController@index');
 
 Route::get("/register", function(){
@@ -20,4 +20,7 @@ Route::get("/register", function(){
     return "Customer register on client side";
 });
 
+Route::group(['middleware'=>'onboard', 'layout'=>'layouts.client'], function(){
+    Route::livewire('/onboard', 'user.onboard')->name("onboard");
+});
 

@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'permission' => \App\Http\Middleware\PermissionMiddleware::class,
         'tenant' => \App\Http\Middleware\TenantResolve::class,
+        'onboard' => \App\Http\Middleware\OnboardMiddleware::class,
     ];
 
     /**

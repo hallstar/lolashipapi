@@ -20,6 +20,11 @@ class Tenant extends Model
         return $this->hasMany(User::class);
     }
 
+    public static function fromToken($token)
+    {
+        return self::where('hash', $token)->first();
+    }
+
     public static function createWithUser($data)
     {
         $tenant = self::create([

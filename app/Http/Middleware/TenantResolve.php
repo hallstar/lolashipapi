@@ -36,6 +36,9 @@ class TenantResolve
         if($tenant!=null)
         {
             $request->merge(['tenant_id'=>$tenant->id]);
+            app()->singleton('tenant', function() use($tenant) {
+                return $tenant;
+            });
             $resolved = true;
         }
 
