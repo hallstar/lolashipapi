@@ -23,6 +23,8 @@ class CreateTenantsTable extends Migration
             $table->boolean('is_active')->default(true);
             $table->string('hash')->nullable();
             $table->smallInteger('onboard_step')->default(0);
+            $table->string('timezone')->default('America/Jamaica');
+            $table->string('default_email')->nullable();
         });
     }
 

@@ -10,7 +10,7 @@ class Tenant extends Model
     //
     protected $fillable = [
 
-        'subdomain','name','is_active'
+        'subdomain','name','is_active', 'default_email',
     ];
 
     public function users()
@@ -24,6 +24,7 @@ class Tenant extends Model
             'subdomain'=>$data['subdomain'],
             'name'  => $data['company'],
             'is_active' => false,
+            'default_email' => $data['email'],
         ]);
 
         $tenant->hash = md5($tenant->id.$tenant->subdomain).time();
